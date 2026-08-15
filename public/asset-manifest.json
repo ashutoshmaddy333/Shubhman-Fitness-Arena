@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-08-14T17:09:09.378Z",
+  "assets": {
+    "athlete-hero": true,
+    "barbell": true,
+    "dumbbell": true,
+    "kettlebell": true,
+    "bench": true,
+    "plates": true,
+    "squat-rack": true,
+    "cable-machine": true,
+    "rower": true,
+    "treadmill": true,
+    "bike": true,
+    "sled": true,
+    "boxing-bag": true,
+    "gym-floor": true,
+    "gym-walls": true,
+    "gym-ceiling": true,
+    "gym-pillars": true,
+    "gym-mirrors": true,
+    "gym-doors": true,
+    "gym-windows": true,
+    "gym-lighting-fixtures": true,
+    "hdr-studio": false,
+    "hdr-gym-dark": false,
+    "hdr-gym-dramatic": false,
+    "hdr-neutral": false
+  },
+  "characters": {
+    "athlete-hero": true
+  },
+  "equipment": {
+    "barbell": true,
+    "dumbbell": true,
+    "kettlebell": true,
+    "bench": true,
+    "plates": true,
+    "squat-rack": true,
+    "cable-machine": true,
+    "rower": true,
+    "treadmill": true,
+    "bike": true,
+    "sled": true,
+    "boxing-bag": true
+  },
+  "environment": {
+    "gym-floor": true,
+    "gym-walls": true,
+    "gym-ceiling": true,
+    "gym-pillars": true,
+    "gym-mirrors": true,
+    "gym-doors": true,
+    "gym-windows": true,
+    "gym-lighting-fixtures": true
+  },
+  "hdr": {
+    "hdr-studio": false,
+    "hdr-gym-dark": false,
+    "hdr-gym-dramatic": false,
+    "hdr-neutral": false
+  }
+}
