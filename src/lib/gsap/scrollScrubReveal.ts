@@ -6,6 +6,10 @@ import {
   FORGE_SCROLL_EASE,
   FORGE_SCROLL_REVEAL,
 } from "@/lib/motion/scrollEngine";
+import {
+  FORGE_SCROLL_REVEAL_MOBILE,
+  isMobileMotionDevice,
+} from "@/lib/motion/mobileMotion";
 
 export interface ScrollScrubRevealOptions {
   trigger?: Element;
@@ -26,6 +30,23 @@ export function createScrollScrubReveal(
   const el = Array.isArray(target) ? target[0] : target;
   const trigger =
     options.trigger ?? (el instanceof Element ? el : undefined);
+
+  const mobile = isMobileMotionDevice();
+
+  if (mobile) {
+    return gsap.fromTo(target, from, {
+      ...to,
+      ease: options.ease ?? FORGE_SCROLL_EASE.cinematic,
+      force3D: true,
+      scrollTrigger: {
+        trigger: trigger ?? el,
+        start: options.start ?? FORGE_SCROLL_REVEAL_MOBILE.start,
+        toggleActions: "play none none none",
+        once: true,
+        invalidateOnRefresh: options.invalidateOnRefresh ?? true,
+      },
+    });
+  }
 
   return gsap.fromTo(target, from, {
     ...to,

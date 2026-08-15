@@ -6,6 +6,7 @@ import { HERO_SCROLL } from "@/lib/gsap/scrollConfig";
 import { MOTION_DISTANCE } from "@/lib/motion/tokens";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
+import { isMobileMotionDevice } from "@/lib/motion/mobileMotion";
 
 interface UseHeroScrollTimelineOptions {
   triggerRef: React.RefObject<HTMLElement | null>;
@@ -36,7 +37,7 @@ export function useHeroScrollTimeline({
     const trigger = triggerRef.current;
     if (!trigger) return;
 
-    if (reducedMotion) {
+    if (reducedMotion || isMobileMotionDevice()) {
       setHeroProgress(0);
       return;
     }

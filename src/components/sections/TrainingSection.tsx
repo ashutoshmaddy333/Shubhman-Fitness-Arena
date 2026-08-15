@@ -10,6 +10,7 @@ import { RevealText } from "@/components/motion/text/RevealText";
 import { ForgeImageFrame } from "@/components/ui/ForgeImageFrame";
 import { useSectionProgress } from "@/hooks/useSectionProgress";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
+import { isMobileMotionDevice, FORGE_SCROLL_REVEAL_MOBILE } from "@/lib/motion/mobileMotion";
 import { MOTION_DISTANCE, MOTION_STAGGER } from "@/lib/motion/tokens";
 import { FORGE_SCRUB } from "@/lib/motion/scrollEngine";
 
@@ -33,6 +34,8 @@ export function TrainingSection() {
       return;
     }
 
+    const mobile = isMobileMotionDevice();
+
     return createMotionContext(section, () => {
       gsap.fromTo(
         grid.children,
@@ -41,13 +44,20 @@ export function TrainingSection() {
           y: 0,
           opacity: 1,
           stagger: MOTION_STAGGER.normal,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 70%",
-            end: "top 20%",
-            scrub: FORGE_SCRUB.reveal,
-          },
+          ease: mobile ? "power2.out" : "none",
+          scrollTrigger: mobile
+            ? {
+                trigger: section,
+                start: FORGE_SCROLL_REVEAL_MOBILE.start,
+                toggleActions: "play none none none",
+                once: true,
+              }
+            : {
+                trigger: section,
+                start: "top 70%",
+                end: "top 20%",
+                scrub: FORGE_SCRUB.reveal,
+              },
         },
       );
     });

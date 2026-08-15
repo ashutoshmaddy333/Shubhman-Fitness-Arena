@@ -129,8 +129,18 @@ export const PAGE_CAMERA_KEYFRAMES: readonly PageCameraKeyframe[] = [
     },
   },
   {
+    progress: 0.99,
+    zone: "footer",
+    state: {
+      position: [0, 2, 8],
+      rotation: [0, 0, 0],
+      fov: 50,
+      lookAt: [0, 1.2, -3],
+    },
+  },
+  {
     progress: 1,
-    zone: "final",
+    zone: "footer",
     state: {
       position: [0, 2, 8],
       rotation: [0, 0, 0],

@@ -44,6 +44,12 @@ export function useHeroAssetLoader(): HeroAssetLoadState {
 
     setState({ ready: false, loaded: 0, total });
 
+    const loadTimeout = window.setTimeout(() => {
+      if (!cancelled) {
+        setState({ ready: true, loaded: total, total });
+      }
+    }, 8000);
+
     preloadHeroAssetsAsync((loaded, assetTotal) => {
       if (!cancelled) {
         setState((prev) => ({
@@ -60,6 +66,7 @@ export function useHeroAssetLoader(): HeroAssetLoadState {
 
     return () => {
       cancelled = true;
+      window.clearTimeout(loadTimeout);
     };
   }, []);
 

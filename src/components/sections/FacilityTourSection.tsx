@@ -30,7 +30,7 @@ export function FacilityTourSection() {
       style={{ height: meta.scrollHeight }}
       aria-labelledby="facility-heading"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-end pb-[clamp(3rem,8vh,6rem)]">
+      <div className="sticky top-0 h-screen flex flex-col justify-end pb-[clamp(3rem,8vh,6rem)] max-lg:relative max-lg:h-auto max-lg:min-h-[100svh] max-lg:overflow-visible">
         <div className="container-forge w-full pt-[var(--nav-height)]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
             <div>

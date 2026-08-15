@@ -24,3 +24,9 @@ export const CINEMATIC_SECTION_SCROLL = {
   end: "bottom bottom",
   scrub: FORGE_SCRUB.cinematic,
 } as const;
+
+export const FINAL_SECTION_SCROLL = {
+  start: "top top",
+  end: "bottom bottom",
+  scrub: FORGE_SCRUB.cinematic,
+} as const;

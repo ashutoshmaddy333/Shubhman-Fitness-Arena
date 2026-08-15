@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import type { NavLink } from "@/lib/constants/navigation";
+import { scrollToAnchor } from "@/lib/navigation/scrollToAnchor";
+import { useLenis } from "@/components/providers/LenisContext";
 
 interface NavLinkWithPreviewProps {
   item: NavLink;
@@ -18,13 +20,20 @@ export function NavLinkWithPreview({
   variant = "desktop",
 }: NavLinkWithPreviewProps) {
   const [hovered, setHovered] = useState(false);
+  const lenis = useLenis();
+
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!scrollToAnchor(item.href, lenis)) return;
+    event.preventDefault();
+    onNavigate?.();
+  };
 
   if (variant === "mobile") {
     return (
       <Link
         href={item.href}
         className="group flex items-center gap-4 py-2"
-        onClick={onNavigate}
+        onClick={handleAnchorClick}
       >
         {item.image && (
           <div className="relative h-16 w-24 shrink-0 overflow-hidden border border-[var(--border)] bg-[var(--surface-elevated)]">
@@ -39,7 +48,7 @@ export function NavLinkWithPreview({
           </div>
         )}
         <div>
-          <span className="type-heading-xl text-[var(--text)] block group-hover:text-[var(--accent)] transition-colors">
+          <span className="type-heading-md text-[var(--text)] block group-hover:text-[var(--accent)] transition-colors">
             {item.label}
           </span>
           {item.description && (
@@ -63,6 +72,7 @@ export function NavLinkWithPreview({
           hovered ? "text-[var(--accent-bright)]" : "text-[var(--text-secondary)] hover:text-[var(--text)]",
         ].join(" ")}
         data-interactive
+        onClick={handleAnchorClick}
       >
         {item.label}
       </Link>

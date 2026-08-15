@@ -8,9 +8,9 @@ export interface BackdropImage {
 
 export const BACKDROP_IMAGES = {
   blueHero: {
-    src: "/images/backdrop/backdrop-blue-hero.png",
-    alt: "Blue hero gym backdrop",
-    objectPosition: "center center",
+    src: "/images/backdrop/backdrop-blue-hero-premium.png",
+    alt: "Premium dark blue cinematic gym hero backdrop",
+    objectPosition: "center 42%",
   },
   blueSquat: {
     src: "/images/backdrop/backdrop-blue-squat.png",

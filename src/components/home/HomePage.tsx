@@ -16,6 +16,7 @@ import { VlogSection } from "@/components/sections/VlogSection";
 import { GallerySection } from "@/components/sections/GallerySection";
 import { MembershipSection } from "@/components/sections/MembershipSection";
 import { FinalCinematicSection } from "@/components/sections/FinalCinematicSection";
+import { HomeFooterSection } from "@/components/sections/HomeFooterSection";
 import { usePageScrollTimeline } from "@/lib/gsap/usePageScrollTimeline";
 
 const ForgeCanvas = dynamic(
@@ -46,6 +47,7 @@ export function HomePage() {
         <GallerySection />
         <MembershipSection />
         <FinalCinematicSection />
+        <HomeFooterSection />
       </main>
     </>
   );

@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Syne, Outfit, Instrument_Serif, IBM_Plex_Mono } from "next/font/google";
 import { AppProviders } from "@/components/providers/AppProviders";
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
@@ -70,6 +69,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -86,7 +91,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <AppProviders>
-          <Navbar />
           {children}
           <Footer />
         </AppProviders>

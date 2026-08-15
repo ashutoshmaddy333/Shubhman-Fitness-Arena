@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { registerGSAP, gsap, ScrollTrigger } from "@/lib/gsap/registerGSAP";
 import { FORGE_LENIS } from "@/lib/motion/scrollEngine";
+import { isMobileMotionDevice } from "@/lib/motion/mobileMotion";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
 import { LenisContext } from "@/components/providers/LenisContext";
 import { threeMotionStore } from "@/lib/three/threeMotionStore";
@@ -20,11 +21,22 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   useEffect(() => {
     registerGSAP();
 
-    if (reducedMotion) {
+    if (reducedMotion || isMobileMotionDevice()) {
       setLenis(null);
       threeMotionStore.scrollVelocity.current = 0;
-      ScrollTrigger.refresh();
-      return;
+
+      const refreshScroll = () => {
+        requestAnimationFrame(() => ScrollTrigger.refresh());
+      };
+
+      refreshScroll();
+      window.addEventListener("orientationchange", refreshScroll);
+      window.addEventListener("resize", refreshScroll);
+
+      return () => {
+        window.removeEventListener("orientationchange", refreshScroll);
+        window.removeEventListener("resize", refreshScroll);
+      };
     }
 
     const instance = new Lenis({

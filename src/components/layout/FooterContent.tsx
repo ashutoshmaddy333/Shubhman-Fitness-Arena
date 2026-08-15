@@ -11,9 +11,9 @@ interface FooterContentProps {
 export function FooterContent({ className = "" }: FooterContentProps) {
   return (
     <div className={`footer-on-canvas ${className}`}>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
-        <div className="lg:col-span-2" data-footer-col>
-          <BrandLogo variant="full" className="mb-5" />
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-8">
+        <div className="lg:col-span-2 min-w-0" data-footer-col>
+          <BrandLogo variant="compact" linked={false} className="mb-5" />
           <p className="footer-body type-body-lg mt-2 max-w-sm">{BRAND.philosophy.body}</p>
           <ul className="mt-6 flex flex-wrap gap-3" aria-label="Core values">
             {BRAND.values.map((value) => (
@@ -39,29 +39,31 @@ export function FooterContent({ className = "" }: FooterContentProps) {
           </div>
         </div>
 
-        {Object.entries(FOOTER_NAV).map(([group, links]) => (
-          <div key={group} data-footer-col>
-            <p className="footer-label type-micro mb-5 uppercase">{group}</p>
-            <ul className="space-y-2.5" role="list">
-              {links.map((link) => (
-                <li key={link.href + link.label}>
-                  <Link
-                    href={link.href}
-                    className="footer-link type-caption transition-colors"
-                    data-interactive
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:col-span-3 lg:gap-8">
+          {Object.entries(FOOTER_NAV).map(([group, links]) => (
+            <div key={group} data-footer-col className="min-w-0">
+              <p className="footer-label type-micro mb-3 sm:mb-5 uppercase">{group}</p>
+              <ul className="space-y-2 sm:space-y-2.5" role="list">
+                {links.map((link) => (
+                  <li key={link.href + link.label}>
+                    <Link
+                      href={link.href}
+                      className="footer-link type-caption transition-colors break-words [overflow-wrap:anywhere]"
+                      data-interactive
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div
         data-footer-bottom
-        className="footer-divider mt-12 pt-6 flex flex-col sm:flex-row justify-between gap-4"
+        className="footer-divider mt-10 sm:mt-12 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
       >
         <p className="footer-meta type-caption">
           © {new Date().getFullYear()} {BRAND.name}. All rights reserved.

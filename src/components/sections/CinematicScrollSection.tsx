@@ -104,27 +104,9 @@ export function CinematicScrollSection({
       style={{ height: scrollHeight }}
       aria-labelledby={`${id}-heading`}
     >
-      <div className="sticky top-0 h-screen flex items-end pb-[clamp(3rem,8vh,6rem)] pointer-events-none">
+      <div className="sticky top-0 h-screen flex items-end pb-[clamp(3rem,8vh,6rem)] pointer-events-none max-lg:relative max-lg:h-auto max-lg:min-h-[100svh] max-lg:overflow-visible">
         <div className="container-forge relative w-full pt-[var(--nav-height)] pointer-events-auto">
-          {image && (
-            <div
-              ref={imagePanelRef}
-              className="hidden lg:block absolute right-0 top-[14%] w-[min(40vw,440px)] will-change-transform"
-              aria-hidden="true"
-              style={{ perspective: "900px" }}
-            >
-              <ForgeImageFrame
-                src={image.src}
-                alt={image.alt}
-                aspect={image.aspect ?? "4/5"}
-                objectPosition={image.objectPosition ?? "center center"}
-                variant={image.variant ?? "parallax"}
-                sizes="440px"
-                className="border border-[var(--border)] shadow-[0_24px_80px_rgba(0,0,0,0.55)]"
-              />
-            </div>
-          )}
-          <div className="max-w-3xl">
+          <div className="max-w-3xl relative z-10">
             <SectionLabel number={number} label={label} />
             <h2
               ref={titleRef}
@@ -138,6 +120,24 @@ export function CinematicScrollSection({
             )}
             {children}
           </div>
+          {image && (
+            <div
+              ref={imagePanelRef}
+              className="will-change-transform mt-8 w-full max-w-sm lg:mt-0 lg:absolute lg:right-0 lg:top-[14%] lg:w-[min(40vw,440px)]"
+              aria-hidden="true"
+              style={{ perspective: "900px" }}
+            >
+              <ForgeImageFrame
+                src={image.src}
+                alt={image.alt}
+                aspect={image.aspect ?? "4/5"}
+                objectPosition={image.objectPosition ?? "center center"}
+                variant={image.variant ?? "parallax"}
+                sizes="(max-width: 1023px) 90vw, 440px"
+                className="border border-[var(--border)] shadow-[0_24px_80px_rgba(0,0,0,0.55)]"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

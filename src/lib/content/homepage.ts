@@ -25,7 +25,8 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionMeta[] = [
   { id: "vlog", number: "11", label: "Journal", scrollHeight: "auto", pageStart: 0.84, pageEnd: 0.88 },
   { id: "gallery", number: "12", label: "Gallery", scrollHeight: "auto", pageStart: 0.88, pageEnd: 0.92 },
   { id: "membership", number: "13", label: "Membership", scrollHeight: "auto", pageStart: 0.92, pageEnd: 0.96 },
-  { id: "final", number: "14", label: "Final", scrollHeight: "170vh", pageStart: 0.96, pageEnd: 1 },
+  { id: "final", number: "14", label: "Final", scrollHeight: "320vh", pageStart: 0.96, pageEnd: 0.985 },
+  { id: "footer", number: "15", label: "Footer", scrollHeight: "auto", pageStart: 0.985, pageEnd: 1 },
 ] as const;
 
 export const HOMEPAGE_COPY = {

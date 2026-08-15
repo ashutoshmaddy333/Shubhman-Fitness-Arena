@@ -21,7 +21,7 @@ export function HeroLoadingExperience({
 
   return (
     <div
-      className="fixed inset-0 z-[9998] flex items-center justify-center bg-[var(--background)]"
+      className="fixed inset-0 z-[var(--z-overlay)] flex items-center justify-center bg-[var(--background)]"
       aria-live="polite"
       aria-busy="true"
       role="status"

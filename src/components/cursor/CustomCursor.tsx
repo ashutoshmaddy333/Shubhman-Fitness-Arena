@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import { useMobileMotion } from "@/hooks/useMobileMotion";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
 import { CURSOR_MODES } from "@/lib/motion/hoverPresets";
 import { MOTION_CURSOR } from "@/lib/motion/tokens";
@@ -29,13 +30,14 @@ export function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const isTouch = useIsTouchDevice();
+  const isMobileMotion = useMobileMotion();
   const { reducedMotion } = useReducedMotionContext();
   const position = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
   const modeRef = useRef<CursorMode>("default");
 
   useEffect(() => {
-    if (isTouch || reducedMotion) return;
+    if (isTouch || isMobileMotion || reducedMotion) return;
 
     document.documentElement.classList.add("custom-cursor-active");
 
@@ -98,9 +100,9 @@ export function CustomCursor() {
       document.removeEventListener("mouseover", onMouseOver);
       cancelAnimationFrame(rafId);
     };
-  }, [isTouch, reducedMotion]);
+  }, [isTouch, isMobileMotion, reducedMotion]);
 
-  if (isTouch || reducedMotion) return null;
+  if (isTouch || isMobileMotion || reducedMotion) return null;
 
   return (
     <div

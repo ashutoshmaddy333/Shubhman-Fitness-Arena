@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { FooterContent } from "@/components/layout/FooterContent";
 
-/** Standalone footer for non-home routes — home footer lives inside FinalCinematicSection */
+/** Standalone footer for non-home routes — home footer lives in HomeFooterSection */
 export function Footer() {
   const pathname = usePathname();
 
