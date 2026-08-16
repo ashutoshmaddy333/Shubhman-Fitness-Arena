@@ -7,7 +7,6 @@ import { BACKDROP_IMAGES } from "@/lib/content/backdropImages";
 import { FooterContent } from "@/components/layout/FooterContent";
 import { createMotionContext, setVisibleInstantly } from "@/lib/gsap/createMotionContext";
 import { createScrollScrubReveal } from "@/lib/gsap/scrollScrubReveal";
-import { FORGE_SCRUB } from "@/lib/motion/scrollEngine";
 import { useSectionProgress } from "@/hooks/useSectionProgress";
 import { useReducedMotionContext } from "@/components/providers/ReducedMotionProvider";
 import { isMobileMotionDevice } from "@/lib/motion/mobileMotion";
@@ -44,29 +43,29 @@ export function HomeFooterSection() {
     const mobile = isMobileMotionDevice();
 
     return createMotionContext(section, () => {
-      createScrollScrubReveal(
-        bg,
-        { opacity: 0.35 },
-        { opacity: 1 },
-        {
-          trigger: section,
-          start: mobile ? "top 98%" : "top bottom",
-          end: mobile ? "top 80%" : "top 60%",
-          scrub: mobile ? false : FORGE_SCRUB.cinematic,
-        },
-      );
+      if (mobile) {
+        createScrollScrubReveal(
+          bg,
+          { opacity: 0.35 },
+          { opacity: 1 },
+          {
+            trigger: section,
+            start: "top 98%",
+            end: "top 80%",
+          },
+        );
 
-      createScrollScrubReveal(
-        bgInner,
-        { scale: 1.12, y: "4%" },
-        { scale: 1, y: "0%" },
-        {
-          trigger: section,
-          start: mobile ? "top 98%" : "top bottom",
-          end: mobile ? "top 72%" : "top 40%",
-          scrub: mobile ? false : FORGE_SCRUB.parallax,
-        },
-      );
+        createScrollScrubReveal(
+          bgInner,
+          { scale: 1.12, y: "4%" },
+          { scale: 1, y: "0%" },
+          {
+            trigger: section,
+            start: "top 98%",
+            end: "top 72%",
+          },
+        );
+      }
 
       gsap.fromTo(
         cols,
@@ -115,7 +114,7 @@ export function HomeFooterSection() {
       className="footer-section relative z-[var(--z-content)]"
       aria-label="Site footer"
     >
-      <div ref={bgRef} className="footer-section__bg" aria-hidden="true">
+      <div ref={bgRef} className="footer-section__bg lg:hidden" aria-hidden="true">
         <div ref={bgInnerRef} className="footer-section__bg-inner">
           <Image
             src={BACKDROP_IMAGES.blueBench.src}
@@ -129,6 +128,11 @@ export function HomeFooterSection() {
         <div className="footer-section__bg-blend" />
         <div className="footer-section__bg-overlay" />
       </div>
+
+      <div
+        className="footer-section__canvas-fade hidden lg:block pointer-events-none absolute inset-0 z-0"
+        aria-hidden="true"
+      />
 
       <div
         ref={contentRef}

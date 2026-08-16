@@ -32,10 +32,15 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       refreshScroll();
       window.addEventListener("orientationchange", refreshScroll);
       window.addEventListener("resize", refreshScroll);
+      window.addEventListener("load", refreshScroll);
+
+      const delayedRefresh = window.setTimeout(refreshScroll, 600);
 
       return () => {
         window.removeEventListener("orientationchange", refreshScroll);
         window.removeEventListener("resize", refreshScroll);
+        window.removeEventListener("load", refreshScroll);
+        window.clearTimeout(delayedRefresh);
       };
     }
 

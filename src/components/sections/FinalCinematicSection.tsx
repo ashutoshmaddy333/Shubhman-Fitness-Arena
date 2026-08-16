@@ -111,7 +111,6 @@ export function FinalCinematicSection() {
 
       tl.to(finalLeft, { opacity: 0, x: -56, duration: 0.38, ease: "none" }, "exit");
       tl.to(finalRight, { opacity: 0, x: 56, duration: 0.38, ease: "none" }, "exit");
-      tl.to(finalPanel, { opacity: 0, duration: 0.34, ease: "none" }, "exit+=0.06");
 
       if (hint) {
         gsap.to(hint, {
@@ -201,7 +200,7 @@ export function FinalCinematicSection() {
               <span className="footer-scroll-chevron" />
             </p>
 
-            <div className="final-section-exit-fade pointer-events-none" aria-hidden="true" />
+            <div className="final-section-exit-fade pointer-events-none lg:hidden" aria-hidden="true" />
           </div>
         </div>
       </div>
